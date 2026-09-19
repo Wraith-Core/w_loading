@@ -1,0 +1,61 @@
+@font-face{font-family:'RDR Lino';src:url(fonts/RDRLino-Regular.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Hapna Slab';src:url(fonts/HapnaSlabSerif-DemiBold.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'RDR Catalogue';src:url(fonts/RDRCatalogueBold-Bold.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Tajawal';font-weight:400;src:url(fonts/tajawal-arabic-400-normal.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Tajawal';font-weight:700;src:url(fonts/tajawal-arabic-700-normal.woff2) format('woff2');font-display:swap}
+:root{--ink:#111210;--paper:#eee8da;--muted:#b2b0a1;--red:#bb3934;--gold:#c8b58a;--rule:#eee8da29;--title:'RDR Lino','Tajawal',serif;--body:'Hapna Slab','Tajawal',serif;--number:'RDR Catalogue',serif;--ease:cubic-bezier(.4,0,.2,1)}
+*{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden}html{font-size:clamp(10px,min(.93vw,1.66vh),24px)}
+body{font-family:var(--body);color:var(--paper);-webkit-font-smoothing:antialiased;user-select:none;cursor:none}
+html[dir=rtl]{--body:'Tajawal',sans-serif;--title:'Tajawal',sans-serif}
+.loading-screen{background:var(--ink);isolation:isolate}.landscape,.shade,.paper-grain,.screen-frame{position:fixed;pointer-events:none}
+.landscape{inset:0;background:#38352d url(img/backdrop.jpg) center/cover;filter:sepia(.15) saturate(.4) brightness(.75);animation:journey-landscape 45s ease-out both;z-index:-3}
+.shade{inset:0;background:linear-gradient(90deg,#10120ff5 0%,#10120fce 30%,#10120f22 75%),linear-gradient(0deg,#10120f 0%,#10120ff5 15%,#10120f11 65%,#10120fbb 100%);z-index:-2}
+[dir=rtl] .shade{background:linear-gradient(270deg,#10120ff5 0%,#10120fce 30%,#10120f22 75%),linear-gradient(0deg,#10120f 0%,#10120ff5 15%,#10120f11 65%,#10120fbb 100%)}
+.paper-grain{inset:0;background:url(img/pm-grain.png) repeat;opacity:.065;z-index:-1}.screen-frame{inset:1.2rem;border:1px solid #eee8da13;z-index:5}
+.masthead{position:absolute;top:3rem;left:4.5rem;right:4.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--rule);padding-bottom:1.5rem;gap:2rem}
+.brand{display:flex;gap:1rem;align-items:center;min-width:0}.brand-mark{width:2.9rem;height:3.2rem;display:grid;place-items:center;font:2.25rem 'RDR Lino';border:1px solid #c8b58a88;background:url(img/menu_header_1a.png) center/100% 100%;transform:rotate(-4deg);flex:none;color:var(--paper)}
+.brand b{font:1.25rem 'RDR Lino';letter-spacing:.16em;direction:ltr;display:block}.brand small{display:block;font:.65rem var(--body);letter-spacing:.07em;color:var(--muted);margin-top:.45rem;max-width:24rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.edition{font:.7rem var(--body);letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
+.journey{position:absolute;top:27%;inset-inline-start:6rem;width:39rem;max-width:52vw;animation:reveal 750ms var(--ease) both}
+.eyebrow{display:flex;gap:.8rem;align-items:center;font:.65rem var(--body);letter-spacing:.18em;color:var(--gold);text-transform:uppercase}
+.journey>.eyebrow>span:first-child{height:1px;width:2.4rem;background:var(--red)}
+h1{font:5.2rem/.98 var(--title);text-transform:uppercase;letter-spacing:.015em;max-width:37rem;margin:1.5rem 0 1.8rem;text-wrap:balance}
+.title-divider{display:block;width:15rem;height:.2rem;object-fit:fill;opacity:.4;margin:1.6rem 0}
+.intro{font:1rem/1.7 var(--body);color:var(--muted);max-width:26rem}.welcome{margin-top:1.2rem;font:.85rem var(--body);color:var(--paper)}
+.journey-footer{position:absolute;left:6rem;right:6rem;bottom:5.5rem;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:6rem;align-items:start}
+.loading-progress{min-width:0}.progress-heading{display:flex;justify-content:space-between;align-items:end;gap:2rem}.progress-heading .eyebrow{font-size:.65rem}
+.progress-heading h2{font:1.1rem/1.4 var(--body);margin-top:.7rem;min-height:1.5em}.percentage{display:flex;align-items:baseline;gap:.3rem;font:4rem/.9 var(--number);color:var(--paper)}.percentage b{font-weight:400}.percentage small{font-size:1rem;color:var(--muted)}
+.progress-track{height:4px;background:#eee8da24;margin:1.5rem 0 1.4rem;position:relative}.progress-track>div{height:100%;width:0;background:var(--paper);transition:width 400ms var(--ease);position:relative}.progress-track>div::after{content:'';position:absolute;inset-inline-end:0;top:-3px;height:10px;width:3px;background:var(--red)}
+.chapters{display:flex;justify-content:space-between;gap:1rem;list-style:none}.chapters li{display:flex;align-items:center;gap:.6rem;font-size:.7rem;color:#929488}.chapter-dot{font:.85rem var(--number);border:1px solid var(--rule);width:1.45rem;height:1.45rem;display:grid;place-items:center;flex:none}
+.chapters li.is-current{color:var(--paper)}.is-current .chapter-dot{border-color:var(--gold);color:var(--gold)}.chapters li.is-done .chapter-dot{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+.travel-note{padding:1.3rem 1.6rem 1.4rem;border:1px solid var(--rule);background:#11120f77;min-height:7.8rem}.note-heading{display:flex;gap:.65rem;align-items:center;font:.7rem var(--body);color:var(--gold)}.note-star{font-size:1rem}.note-count{margin-inline-start:auto;color:#929488;font:.8rem var(--number)}
+.travel-note p{font:.85rem/1.65 var(--body);color:var(--muted);margin-top:.8rem;transition:opacity 220ms}.travel-note.fade p{opacity:0}
+.imprint{position:absolute;bottom:2.8rem;left:4.5rem;right:4.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;color:#85877d;font:.6rem 'RDR Lino';letter-spacing:.15em}.imprint i{font-style:normal;color:var(--gold);font-size:.45rem;margin-inline:.7rem}
+[dir=rtl] h1{font-size:4.5rem;line-height:1.3;font-weight:700;letter-spacing:0;margin-block:1.1rem}
+[dir=rtl] .eyebrow,[dir=rtl] .edition{letter-spacing:0;font-weight:700}[dir=rtl] .intro{line-height:1.9;font-size:1.05rem}[dir=rtl] .progress-heading h2{font-weight:700;font-size:1.2rem}
+@keyframes journey-landscape{from{transform:scale(1.04)}to{transform:scale(1)}}@keyframes reveal{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* The transition starts opaque. Only Hide fades it, after the game reports readiness. */
+.transition-screen{background:transparent}.transition-screen #curtain{position:fixed;inset:0;background:var(--ink);opacity:0;visibility:hidden;transition:opacity .28s var(--ease),visibility 0s linear .28s;isolation:isolate}
+.transition-screen #curtain.on{opacity:1;visibility:visible;transition:none}
+.transition-screen #curtain::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,#292d2066,transparent 60%);z-index:-2}
+.transition-card{position:absolute;top:50%;left:50%;width:48rem;max-width:85vw;transform:translate(-50%,-50%);text-align:center}
+.transition-emblem{position:relative;margin:0 auto 3rem;width:5rem;height:5rem;display:grid;place-items:center;font:3.4rem 'RDR Lino';border:1px solid #c8b58a77;color:var(--gold)}
+.transition-emblem span{position:absolute;bottom:-.5rem;background:var(--ink);padding:0 .5rem;font-size:.65rem}
+.transition-card h1{font:2.5rem/1.4 var(--title);margin:0 auto 1rem;text-transform:none;max-width:none;overflow-wrap:anywhere}.transition-card p{font:1rem/1.6 var(--body);color:var(--muted);min-height:1.6rem}.transition-card .title-divider{margin:1.8rem auto;opacity:.35}
+.sweep{width:9rem;height:2px;margin:2rem auto 0;background:#eee8da20;overflow:hidden}.sweep i{display:block;height:100%;width:35%;background:var(--gold);animation:sweep 1.6s ease-in-out infinite}
+@keyframes sweep{0%{transform:translateX(-120%)}100%{transform:translateX(400%)}}
+[dir=rtl] .transition-card h1{font-size:2.4rem;font-weight:700}
+@media(max-aspect-ratio:4/3){.journey{top:23%;max-width:70vw}.journey-footer{gap:3rem;bottom:6rem}.journey h1{font-size:4.2rem}.journey{width:37rem}.travel-note{padding:1.2rem}.chapters{gap:.6rem}.chapters li{gap:.4rem;font-size:.65rem}.edition{max-width:25rem;text-align:end}}
+@media(max-height:600px){html{font-size:10px}.journey{top:25%}.journey h1{font-size:4rem}.journey .intro{display:none}.journey-footer{bottom:5rem}.masthead{top:2.5rem}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* Classic Western Audio Player */
+.audio-player{display:flex;align-items:center;gap:.9rem;background:#10120fdf;border:1px solid var(--rule);padding:.45rem .9rem;cursor:default;pointer-events:auto;z-index:10;transition:all .2s;border-radius:2px}
+.audio-player:hover{border-color:var(--gold)}
+.audio-toggle{width:2.2rem;height:2.2rem;border:1px solid var(--gold);background:#1a1c18;color:var(--gold);display:grid;place-items:center;cursor:pointer;font-size:.85rem;transition:all .2s;flex:none}
+.audio-toggle:hover{background:var(--gold);color:var(--ink)}
+.audio-meta{display:flex;flex-direction:column;gap:.15rem;font-size:.65rem;line-height:1.2}
+.audio-meta .audio-title{color:var(--paper);font-weight:700;letter-spacing:.05em}
+.audio-meta .audio-status{color:var(--muted);font-size:.6rem}
+.audio-volume-container{display:flex;align-items:center;margin-inline-start:.4rem}
+.audio-slider{width:4.2rem;height:4px;accent-color:var(--gold);cursor:pointer;background:#2a2c26;border-radius:2px}

@@ -1,0 +1,43 @@
+{
+  "curtain": {
+    "loading": "Loading",
+    "preparing": "Preparing your characters",
+    "selection": "Opening the character selection",
+    "creator": "Preparing the character creator",
+    "spawn": "Taking you into the world",
+    "wardrobe": "Opening the wardrobe"
+  },
+  "screen": {
+    "welcome": "Welcome, %s",
+    "tip_label": "THE TRAVELLER’S NOTES",
+    "build": "BUILD %s",
+    "phase": {
+      "connecting": "Connecting to the server",
+      "resources": "Downloading the resources",
+      "map": "Loading the world",
+      "session": "Joining the session",
+      "data": "Loading the data files",
+      "scripts": "Starting the scripts",
+      "finishing": "Finishing up",
+      "ready": "Preparing your characters"
+    },
+    "eyebrow": "A WORLD OF YOUR OWN",
+    "headline": "YOUR STORY STARTS HERE",
+    "intro": "Towns to discover. Strangers with stories. A place to write your own.",
+    "edition": "WRAITH CORE · RED DEAD",
+    "progress_label": "YOUR JOURNEY INTO THE WORLD",
+    "steps": {
+      "0": "Connection",
+      "1": "The world",
+      "2": "Your character"
+    }
+  },
+  "tips": {
+    "menu": "Press ESC for the Wraith menu: map, settings and quit.",
+    "creator": "Take your time creating your character; the wardrobe can change your look later.",
+    "horse": "Care for your horse: brush and feed it to raise the bond and its stats.",
+    "needs": "Watch hunger and thirst on the HUD; food and drink are sold in the stores.",
+    "stables": "Stables sell horses, keep them and repair their tack.",
+    "law": "Mind the town laws; the law watches the towns and the roads."
+  }
+}
