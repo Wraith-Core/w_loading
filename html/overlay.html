@@ -1,10 +1,13 @@
 <!doctype html>
-<html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Wraith transition</title><link rel="stylesheet" href="loading.css"></head>
-<body class="transition-screen">
+<html lang="en" dir="ltr" style="background: transparent !important; background-color: transparent !important;"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Wraith transition</title><link rel="stylesheet" href="loading.css"><link rel="stylesheet" href="store-adapter.css"><link rel="stylesheet" href="store-theme.css" data-wraith-store-theme></head>
+<body class="transition-screen wst-root" style="background: transparent !important; background-color: transparent !important; pointer-events: none;">
   <div id="curtain" aria-hidden="true">
     <div class="paper-grain" aria-hidden="true"></div><div class="screen-frame" aria-hidden="true"></div>
     <header class="masthead"><div class="brand"><span class="brand-mark">W</span><span><b>WRAITH CORE</b><small id="curtain-server">REDM</small></span></div><span class="edition">WRAITH STUDIO</span></header>
-    <main class="transition-card"><div class="transition-emblem" aria-hidden="true">W<span>◆</span></div><h1 id="text" aria-live="polite"></h1><p id="sub"></p><img class="title-divider" src="img/divider_line.png" alt=""><div class="sweep" aria-hidden="true"><i></i></div></main>
+    <main class="transition-card wst-panel">
+      <div class="native-frame wst-frame" aria-hidden="true"><span class="fr-t wst-fr-t"></span><span class="fr-b wst-fr-b"></span><span class="fr-l wst-fr-l"></span><span class="fr-r wst-fr-r"></span><span class="fr-tl wst-fr-tl"></span><span class="fr-tr wst-fr-tr"></span><span class="fr-bl wst-fr-bl"></span><span class="fr-br wst-fr-br"></span></div>
+      <div class="transition-emblem" aria-hidden="true">W</div><h1 id="text" aria-live="polite"></h1><p id="sub"></p><div class="sweep" aria-hidden="true"><i></i></div>
+    </main>
     <div class="imprint"><span>WRAITH STUDIO <i>◆</i> REDM</span><span>WRAITH CORE</span></div>
   </div><script src="overlay.js"></script>
 </body></html>

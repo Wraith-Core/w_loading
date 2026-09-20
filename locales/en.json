@@ -13,11 +13,11 @@
     "build": "BUILD %s",
     "phase": {
       "connecting": "Connecting to the server",
-      "resources": "Downloading the resources",
+      "resources": "Preparing your journey",
       "map": "Loading the world",
       "session": "Joining the session",
-      "data": "Loading the data files",
-      "scripts": "Starting the scripts",
+      "data": "Preparing the world",
+      "scripts": "Bringing the town to life",
       "finishing": "Finishing up",
       "ready": "Preparing your characters"
     },
@@ -30,6 +30,16 @@
       "0": "Connection",
       "1": "The world",
       "2": "Your character"
+    },
+    "audio": {
+      "title": "TRAIL MUSIC",
+      "volume": "Music volume",
+      "play": "Play music",
+      "pause": "Pause music",
+      "playing": "Playing",
+      "paused": "Paused",
+      "muted": "Muted",
+      "unavailable": "Audio unavailable"
     }
   },
   "tips": {

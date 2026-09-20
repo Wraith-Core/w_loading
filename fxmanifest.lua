@@ -5,7 +5,7 @@ lua54 'yes'
 
 name 'w_loading'
 author 'Wraith Studio'
-version '1.1.0'
+version '1.2.0'
 description 'Wraith Core loading screen, and the loading curtain drawn between character selection, creation and the spawn'
 
 -- ════════════════════════════════════════════════════════════════════════════
@@ -26,7 +26,7 @@ dependency 'w_lib'
 
 loadscreen 'html/index.html'
 loadscreen_manual_shutdown 'yes'
-loadscreen_cursor 'no'
+loadscreen_cursor 'yes'
 
 ui_page 'html/overlay.html'
 
@@ -37,6 +37,7 @@ files {
     'html/*.js',
     'html/fonts/*.woff2',
     'html/img/*',
+    'html/store-theme/**/*',
     'locales/*.json',
 }
 

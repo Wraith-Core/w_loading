@@ -1,0 +1,625 @@
+/* Shared visual primitives copied from w_store/web/src/store.css.
+   Layout and behavior stay with each interface. Assets are byte-identical to
+   the files w_store loads. Do not substitute a generic red dashboard theme. */
+@font-face {
+   font-family: 'RDR Lino';
+   src: url('./store-theme/fonts/RDRLino-Regular.woff2') format('woff2');
+   font-display: swap
+}
+
+@font-face {
+   font-family: 'Hapna Slab';
+   src: url('./store-theme/fonts/HapnaSlabSerif-DemiBold.woff2') format('woff2');
+   font-display: swap
+}
+
+@font-face {
+   font-family: 'RDR Catalogue';
+   src: url('./store-theme/fonts/RDRCatalogueBold-Bold.woff2') format('woff2');
+   font-display: swap
+}
+
+@font-face {
+   font-family: 'Noto Sans Arabic';
+   src: url('./store-theme/fonts/NotoSansArabic.woff2') format('woff2');
+   font-weight: 100 900;
+   font-display: swap
+}
+
+@font-face {
+   font-family: 'Tajawal';
+   src: url('./store-theme/fonts/tajawal-arabic-400-normal.woff2') format('woff2');
+   font-weight: 400;
+   font-display: swap;
+   unicode-range: U+0600-06FF, U+0750-077F, U+0870-089F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200F, U+2010-2011, U+0660-0669
+}
+
+@font-face {
+   font-family: 'Tajawal';
+   src: url('./store-theme/fonts/tajawal-arabic-500-normal.woff2') format('woff2');
+   font-weight: 500;
+   font-display: swap;
+   unicode-range: U+0600-06FF, U+0750-077F, U+0870-089F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200F, U+2010-2011, U+0660-0669
+}
+
+@font-face {
+   font-family: 'Tajawal';
+   src: url('./store-theme/fonts/tajawal-arabic-700-normal.woff2') format('woff2');
+   font-weight: 700;
+   font-display: swap;
+   unicode-range: U+0600-06FF, U+0750-077F, U+0870-089F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200F, U+2010-2011, U+0660-0669
+}
+
+@font-face {
+   font-family: 'Tajawal';
+   src: url('./store-theme/fonts/tajawal-latin-400-normal.woff2') format('woff2');
+   font-weight: 400;
+   font-display: swap;
+   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2074, U+20AC, U+2122, U+2212
+}
+
+@font-face {
+   font-family: 'Tajawal';
+   src: url('./store-theme/fonts/tajawal-latin-700-normal.woff2') format('woff2');
+   font-weight: 700;
+   font-display: swap;
+   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+2074, U+20AC, U+2122, U+2212
+}
+
+:root {
+   --wst-ink: #090909;
+   --wst-text: #fff;
+   --wst-text-dim: #a9a9a9;
+   --wst-text-faint: #6d6d6d;
+   --wst-line: rgba(255, 255, 255, .14);
+   --wst-line-strong: rgba(255, 255, 255, .30);
+   --wst-plate: #1f1f1f;
+   --wst-red: #cb0101;
+   --wst-red-soft: rgba(203, 1, 1, .16);
+   --wst-accent: #ededed;
+   --wst-hover: rgba(255, 255, 255, .12);
+   --wst-gold: #c8a44d;
+   --wst-gold-lit: #e7ce8a;
+   --wst-gold-deep: #8c6d22;
+   --wst-ok: #34b895;
+   --wst-warn: #e67e22;
+   --wst-bad: #e74c3c;
+   --wst-f-display: 'RDR Lino', 'Tajawal', 'Noto Sans Arabic', Georgia, serif;
+   --wst-f-body: 'Hapna Slab', 'Tajawal', 'Noto Sans Arabic', Georgia, serif;
+   --wst-f-num: 'RDR Catalogue', 'Tajawal', 'Noto Sans Arabic', Georgia, serif;
+   --wst-f-ar: 'Tajawal', 'Noto Sans Arabic', Georgia, serif;
+   --wst-tex-help_text_bg: url('./store-theme/tex/help_text_bg.png');
+   --wst-tex-menu_header_1a: url('./store-theme/tex/menu_header_1a.png');
+   --wst-tex-selection_box_bg_1a: url('./store-theme/tex/selection_box_bg_1a.png');
+   --wst-tex-selection_box_bg_1c: url('./store-theme/tex/selection_box_bg_1c.png');
+   --wst-tex-divider_line: url('./store-theme/tex/divider_line.png');
+   --wst-tex-crafting_highlight_t: url('./store-theme/tex/crafting_highlight_t.png');
+   --wst-tex-crafting_highlight_b: url('./store-theme/tex/crafting_highlight_b.png');
+   --wst-tex-crafting_highlight_l: url('./store-theme/tex/crafting_highlight_l.png');
+   --wst-tex-crafting_highlight_r: url('./store-theme/tex/crafting_highlight_r.png');
+   --wst-tex-crafting_highlight_tl: url('./store-theme/tex/crafting_highlight_tl.png');
+   --wst-tex-crafting_highlight_tr: url('./store-theme/tex/crafting_highlight_tr.png');
+   --wst-tex-crafting_highlight_bl: url('./store-theme/tex/crafting_highlight_bl.png');
+   --wst-tex-crafting_highlight_br: url('./store-theme/tex/crafting_highlight_br.png');
+}
+
+.wst-root {
+   color: var(--wst-text);
+   font-family: var(--wst-f-body);
+   -webkit-font-smoothing: antialiased
+}
+
+.wst-root * {
+   scrollbar-width: thin;
+   scrollbar-color: rgba(255, 255, 255, .3) rgba(255, 255, 255, .04)
+}
+
+.wst-root *::-webkit-scrollbar {
+   width: 6px;
+   height: 6px
+}
+
+.wst-root *::-webkit-scrollbar-track {
+   background: rgba(255, 255, 255, .04)
+}
+
+.wst-root *::-webkit-scrollbar-thumb {
+   background: rgba(255, 255, 255, .3);
+   border-radius: 3px
+}
+
+.wst-root *::-webkit-scrollbar-thumb:hover {
+   background: rgba(255, 255, 255, .5)
+}
+
+.wst-root *::-webkit-scrollbar-button {
+   display: none;
+   width: 0;
+   height: 0
+}
+
+.wst-panel::before,
+.wst-header::before,
+.wst-button::before,
+.wst-tab::before,
+.wst-close::before,
+.wst-card::before,
+.wst-plate::before,
+.wst-row::before,
+.wst-field::before {
+   display: block !important;
+   width: auto !important;
+   height: auto !important;
+   transform: none !important;
+   filter: none !important;
+   border-radius: 0 !important;
+   box-shadow: none !important
+}
+
+.wst-panel {
+   isolation: isolate !important;
+   background: radial-gradient(130% 90% at 50% 0%, #181818f5 0%, #0e0e0ef7 42%, #050505fa 100%) !important;
+   box-shadow: 0 18px 55px -18px #000d, 0 0 0 1px rgba(255, 255, 255, .08) !important;
+   border: 0 !important;
+   border-radius: 0 !important;
+   color: #fff !important;
+   backdrop-filter: none !important
+}
+
+.wst-panel::before {
+   content: '' !important;
+   position: absolute !important;
+   inset: -4px -6px !important;
+   z-index: -1 !important;
+   pointer-events: none !important;
+   background: #090909e8 !important;
+   opacity: 1 !important;
+   -webkit-mask: var(--wst-tex-help_text_bg) center/100% 100% no-repeat !important;
+   mask: var(--wst-tex-help_text_bg) center/100% 100% no-repeat !important
+}
+
+.wst-frame {
+   position: absolute !important;
+   inset: 0 !important;
+   pointer-events: none !important;
+   z-index: 3 !important;
+   --wst-frame-px: clamp(10px, 1.3vh, 16px);
+   opacity: .65 !important;
+   display: block !important
+}
+
+.wst-frame>span {
+   position: absolute !important;
+   background: var(--wst-accent) !important;
+   border: 0 !important
+}
+
+.wst-fr-t,
+.wst-fr-b {
+   left: var(--wst-frame-px) !important;
+   right: var(--wst-frame-px) !important;
+   height: var(--wst-frame-px) !important;
+   -webkit-mask-repeat: repeat-x !important;
+   mask-repeat: repeat-x !important;
+   -webkit-mask-size: auto 100% !important;
+   mask-size: auto 100% !important
+}
+
+.wst-fr-l,
+.wst-fr-r {
+   top: var(--wst-frame-px) !important;
+   bottom: var(--wst-frame-px) !important;
+   width: var(--wst-frame-px) !important;
+   -webkit-mask-repeat: repeat-y !important;
+   mask-repeat: repeat-y !important;
+   -webkit-mask-size: 100% auto !important;
+   mask-size: 100% auto !important
+}
+
+.wst-fr-tl,
+.wst-fr-tr,
+.wst-fr-bl,
+.wst-fr-br {
+   width: var(--wst-frame-px) !important;
+   height: var(--wst-frame-px) !important;
+   -webkit-mask-size: 100% 100% !important;
+   mask-size: 100% 100% !important;
+   -webkit-mask-repeat: no-repeat !important;
+   mask-repeat: no-repeat !important
+}
+
+.wst-fr-t {
+   top: 0 !important;
+   -webkit-mask-image: var(--wst-tex-crafting_highlight_t) !important;
+   mask-image: var(--wst-tex-crafting_highlight_t) !important
+}
+
+.wst-fr-b {
+   bottom: 0 !important;
+   -webkit-mask-image: var(--wst-tex-crafting_highlight_b) !important;
+   mask-image: var(--wst-tex-crafting_highlight_b) !important
+}
+
+.wst-fr-l {
+   left: 0 !important;
+   -webkit-mask-image: var(--wst-tex-crafting_highlight_l) !important;
+   mask-image: var(--wst-tex-crafting_highlight_l) !important
+}
+
+.wst-fr-r {
+   right: 0 !important;
+   -webkit-mask-image: var(--wst-tex-crafting_highlight_r) !important;
+   mask-image: var(--wst-tex-crafting_highlight_r) !important
+}
+
+.wst-fr-tl {
+   top: 0 !important;
+   left: 0 !important;
+   -webkit-mask-image: var(--wst-tex-crafting_highlight_tl) !important;
+   mask-image: var(--wst-tex-crafting_highlight_tl) !important
+}
+
+.wst-fr-tr {
+   top: 0 !important;
+   right: 0 !important;
+   -webkit-mask-image: var(--wst-tex-crafting_highlight_tr) !important;
+   mask-image: var(--wst-tex-crafting_highlight_tr) !important
+}
+
+.wst-fr-bl {
+   bottom: 0 !important;
+   left: 0 !important;
+   -webkit-mask-image: var(--wst-tex-crafting_highlight_bl) !important;
+   mask-image: var(--wst-tex-crafting_highlight_bl) !important
+}
+
+.wst-fr-br {
+   bottom: 0 !important;
+   right: 0 !important;
+   -webkit-mask-image: var(--wst-tex-crafting_highlight_br) !important;
+   mask-image: var(--wst-tex-crafting_highlight_br) !important
+}
+
+.wst-header {
+   position: relative;
+   isolation: isolate !important;
+   background: transparent !important;
+   border: 0 !important;
+   box-shadow: none !important;
+   text-align: center;
+   color: #fff !important
+}
+
+.wst-header::before {
+   content: '' !important;
+   position: absolute !important;
+   inset: 0 !important;
+   z-index: -1 !important;
+   pointer-events: none !important;
+   background: rgba(255, 255, 255, .06) !important;
+   -webkit-mask: var(--wst-tex-menu_header_1a) center/100% 100% no-repeat !important;
+   mask: var(--wst-tex-menu_header_1a) center/100% 100% no-repeat !important
+}
+
+.wst-title {
+   font-family: var(--wst-f-display) !important;
+   color: #fff !important;
+   font-weight: 800 !important;
+   letter-spacing: .04em;
+   text-shadow: 0 2px 8px #000 !important
+}
+
+.wst-sub {
+   color: var(--wst-text-dim) !important;
+   font-family: var(--wst-f-body) !important
+}
+
+.wst-num {
+   font-family: var(--wst-f-num) !important;
+   direction: ltr;
+   unicode-bidi: isolate;
+   letter-spacing: .02em
+}
+
+.wst-rule {
+   display: block;
+   height: 4px;
+   background: rgba(255, 255, 255, .5) !important;
+   border: 0 !important;
+   -webkit-mask: var(--wst-tex-divider_line) center/100% 100% no-repeat !important;
+   mask: var(--wst-tex-divider_line) center/100% 100% no-repeat !important
+}
+
+.wst-button,
+.wst-tab,
+.wst-card,
+.wst-row,
+.wst-field {
+   position: relative
+}
+
+.wst-button,
+.wst-tab,
+.wst-close,
+.wst-card,
+.wst-plate,
+.wst-row,
+.wst-field {
+   isolation: isolate !important;
+   background: transparent !important;
+   background-image: none !important;
+   border: 0 !important;
+   border-radius: 0 !important;
+   box-shadow: none !important;
+   color: #e5e5e5 !important
+}
+
+.wst-button,
+.wst-tab,
+.wst-close {
+   font-family: var(--wst-f-display) !important;
+   font-weight: 700 !important;
+   text-shadow: none !important;
+   cursor: pointer
+}
+
+.wst-tab {
+   color: #d6d6d6 !important
+}
+
+.wst-close:hover:not(:disabled) {
+   color: #fff !important
+}
+
+.wst-button::before,
+.wst-tab::before,
+.wst-close::before,
+.wst-plate::before,
+.wst-row::before,
+.wst-field::before,
+.wst-card::before {
+   content: '' !important;
+   position: absolute !important;
+   inset: 0 !important;
+   z-index: -1 !important;
+   pointer-events: none !important;
+   background: #1f1f1f !important;
+   opacity: 1 !important;
+   border: 0 !important;
+   -webkit-mask: var(--wst-tex-selection_box_bg_1c) center/100% 100% no-repeat !important;
+   mask: var(--wst-tex-selection_box_bg_1c) center/100% 100% no-repeat !important
+}
+
+.wst-button:hover:not(:disabled),
+.wst-tab:hover:not(:disabled) {
+   color: #fff !important
+}
+
+.wst-button:hover:not(:disabled)::before,
+.wst-tab:hover:not(:disabled)::before {
+   background: #383838 !important
+}
+
+.wst-button.primary {
+   color: #111 !important
+}
+
+.wst-button.primary::before {
+   background: #ededed !important
+}
+
+.wst-button.primary:hover:not(:disabled) {
+   color: #111 !important
+}
+
+.wst-button.primary:hover:not(:disabled)::before {
+   background: #fff !important
+}
+
+.wst-button.danger {
+   color: #fff !important
+}
+
+.wst-button.danger::before,
+.wst-close:hover::before {
+   background: #cb0101 !important
+}
+
+.wst-button.danger:hover:not(:disabled)::before {
+   background: #a50101 !important
+}
+
+.wst-tab:is(.active, .selected, .chosen, .is-active, .is-selected, [aria-selected=true]),
+.wst-tab:is(.active, .selected, .chosen, .is-active, .is-selected, [aria-selected=true]):hover:not(:disabled) {
+   color: #111 !important;
+   font-weight: 800 !important
+}
+
+.wst-tab:is(.active, .selected, .chosen, .is-active, .is-selected, [aria-selected=true])::before,
+.wst-tab:is(.active, .selected, .chosen, .is-active, .is-selected, [aria-selected=true]):hover:not(:disabled)::before {
+   background: #ededed !important
+}
+
+.wst-tab:is(.active, .selected, .chosen, .is-active, .is-selected, [aria-selected=true]) :is(span, b, strong, small) {
+   color: inherit !important
+}
+
+.wst-button:disabled,
+.wst-tab:disabled,
+.wst-close:disabled {
+   opacity: .45 !important;
+   cursor: default
+}
+
+.wst-card {
+   color: #e5e5e5 !important;
+   font-family: var(--wst-f-body) !important
+}
+
+.wst-card::before {
+   background: #181818 !important;
+   -webkit-mask-image: var(--wst-tex-selection_box_bg_1a) !important;
+   mask-image: var(--wst-tex-selection_box_bg_1a) !important
+}
+
+.wst-card:hover:not(:disabled):not(.disabled),
+.wst-card:is(.active, .chosen, .selected, .is-active, .is-selected, [aria-selected=true]) {
+   color: #080808 !important
+}
+
+.wst-card:hover:not(:disabled):not(.disabled)::before,
+.wst-card:is(.active, .chosen, .selected, .is-active, .is-selected, [aria-selected=true])::before {
+   background: #ededed !important
+}
+
+.wst-card:hover:not(:disabled):not(.disabled) :is(h1, h2, h3, h4, p, small, span, b, strong, label),
+.wst-card:is(.active, .chosen, .selected, .is-active, .is-selected, [aria-selected=true]) :is(h1, h2, h3, h4, p, small, span, b, strong, label) {
+   color: inherit !important
+}
+
+.wst-card:disabled,
+.wst-card.disabled {
+   opacity: .55 !important;
+   cursor: default
+}
+
+.wst-card:focus-visible,
+.wst-button:focus-visible,
+.wst-tab:focus-visible,
+.wst-close:focus-visible {
+   outline: 2px solid var(--wst-gold-lit) !important;
+   outline-offset: -2px
+}
+
+.wst-plate::before {
+   background: #1a1a1a !important
+}
+
+/* w_store .ws-toast: same compact notification surface, independent of placement. */
+.wst-toast {
+   isolation: isolate !important;
+   padding: 10px 22px !important;
+   font-family: var(--wst-f-body) !important;
+   font-size: clamp(14px, 1.7vh, 18px) !important;
+   font-weight: 700 !important;
+   background: #0b0b0bee !important;
+   color: #fff !important;
+   border: 0 !important;
+   border-radius: 0 !important;
+   box-shadow: 0 0 0 1px rgba(255, 255, 255, .14), 0 10px 30px -10px #000 !important
+}
+
+.wst-toast::before,
+.wst-toast::after {
+   content: none !important
+}
+
+.wst-toast:is(.ok, .success, .is-success) {
+   color: #9fe9d0 !important
+}
+
+.wst-toast:is(.bad, .error, .is-error) {
+   color: #ffb3ad !important
+}
+
+.wst-row::before {
+   background: #171717 !important
+}
+
+.wst-row:hover::before {
+   background: #262626 !important
+}
+
+.wst-row.clickable:hover::before {
+   background: #383838 !important
+}
+
+.wst-field:focus-within::before {
+   background: #2b2b2b !important
+}
+
+.wst-input {
+   background: #1f1f1f !important;
+   border: 0 !important;
+   border-radius: 0 !important;
+   box-shadow: none !important;
+   color: #fff !important;
+   font-family: var(--wst-f-body) !important;
+   outline: none !important
+}
+
+.wst-field .wst-input {
+   background: transparent !important
+}
+
+.wst-input::placeholder {
+   color: #898989 !important
+}
+
+.wst-input option {
+   background: #1f1f1f;
+   color: #fff
+}
+
+/* The store's native checkbox: a dark square, then paper with an ink center. */
+.wst-check {
+   display: inline-flex !important;
+   align-items: center;
+   gap: 8px !important;
+   cursor: pointer;
+   font-family: var(--wst-f-body);
+   font-size: clamp(13px, 1.6vh, 17px);
+   color: #e5e5e5
+}
+
+.wst-check input[type=checkbox] {
+   appearance: none !important;
+   width: 18px !important;
+   height: 18px !important;
+   min-width: 18px;
+   min-height: 18px;
+   box-sizing: border-box !important;
+   border: 2px solid #8a8a8a !important;
+   background: #111 !important;
+   cursor: pointer;
+   display: grid !important;
+   place-items: center;
+   flex: none !important;
+   padding: 0 !important;
+   margin: 0 !important;
+   border-radius: 0 !important;
+   box-shadow: none !important;
+   outline: none !important
+}
+
+.wst-check input[type=checkbox]::after {
+   content: none
+}
+
+.wst-check input[type=checkbox]:checked {
+   background: #ededed !important;
+   border-color: #ededed !important
+}
+
+.wst-check input[type=checkbox]:checked::after {
+   content: '';
+   position: static;
+   width: 8px;
+   height: 8px;
+   background: #111;
+   border: 0;
+   box-shadow: none;
+   transform: none
+}
+
+.wst-check input[type=checkbox]:disabled {
+   opacity: .4 !important;
+   cursor: default !important
+}
+
+.wst-root [dir=rtl] :is(.wst-title, .wst-sub, .wst-button, .wst-tab, .wst-close, .wst-card, .wst-row, .wst-input, .wst-check, .wst-toast),
+.wst-root[dir=rtl] :is(.wst-title, .wst-sub, .wst-button, .wst-tab, .wst-close, .wst-card, .wst-row, .wst-input, .wst-check, .wst-toast),
+html[lang=ar] .wst-root :is(.wst-title, .wst-sub, .wst-button, .wst-tab, .wst-close, .wst-card, .wst-row, .wst-input, .wst-check, .wst-toast) {
+   font-family: var(--wst-f-ar) !important;
+   letter-spacing: 0
+}

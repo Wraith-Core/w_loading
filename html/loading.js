@@ -66,7 +66,6 @@
     Object.entries(staticLabels).forEach(([id, key]) => { $(id).textContent = str(`screen.${key}`); });
     $('welcome').textContent = H.wl_name ? str('screen.welcome').replace('%s', String(H.wl_name)) : '';
     $('server').textContent = H.wl_server || 'REDM';
-    $('build').textContent = H.wl_build ? str('screen.build').replace('%s', String(H.wl_build)) : '';
     for (let i = 0; i < 3; i++) $(`step-${i}`).textContent = str(`screen.steps.${i}`);
     $('progress').setAttribute('aria-label', str('screen.progress_label'));
     renderPhase(); clearInterval(tipTimer); clearTimeout(tipFade);
@@ -78,119 +77,78 @@
     setupAudioPlayer();
   }
 
-  // ── Western Audio Player ──────────────────────────────────────────────────
+  // The existing procedural soundtrack is self-contained. No missing MP3/OGG
+  // requests, and the same gain node now obeys both the slider and pause button.
   let audioInitialized = false;
   function setupAudioPlayer() {
     if (audioInitialized) return;
     audioInitialized = true;
-    const audio = $('loading-audio');
-    const toggle = $('audio-toggle');
-    const icon = $('audio-icon');
-    const status = $('audio-status');
-    const volume = $('audio-volume');
-    if (!audio || !toggle) return;
-
-    let isPlaying = false;
-    let audioCtx = null;
-    let synthTimer = null;
-
-    function startSynth() {
-      if (audioCtx) return;
+    const toggle = $('audio-toggle'), icon = $('audio-icon');
+    const status = $('audio-status'), volume = $('audio-volume');
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    $('audio-title').textContent = str('screen.audio.title');
+    volume.setAttribute('aria-label', str('screen.audio.volume'));
+    let ctx, master, timer, playing = false, wanted = false, disposed = false;
+    let noteIndex = 0;
+    const notes = [130.81, 164.81, 196, 246.94, 329.63, 392];
+    const level = () => Math.min(1, Math.max(0, Number(volume.value) || 0));
+    function updateState(value) {
+      playing = value;
+      icon.textContent = value ? '❚❚' : '▶';
+      const label = str(value ? 'screen.audio.pause' : 'screen.audio.play');
+      toggle.setAttribute('aria-label', label);
+      toggle.setAttribute('aria-pressed', String(value));
+      toggle.title = label;
+      status.textContent = str(value ? (level() === 0 ? 'screen.audio.muted' : 'screen.audio.playing') : 'screen.audio.paused');
+    }
+    function strum() {
+      if (!ctx || ctx.state !== 'running' || !wanted) return;
+      const osc = ctx.createOscillator(), gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(notes[noteIndex++ % notes.length], ctx.currentTime);
+      gain.gain.setValueAtTime(.001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(.35, ctx.currentTime + .15);
+      gain.gain.exponentialRampToValueAtTime(.001, ctx.currentTime + 3.2);
+      osc.connect(gain); gain.connect(master);
+      osc.onended = () => { osc.disconnect(); gain.disconnect(); };
+      osc.start(); osc.stop(ctx.currentTime + 3.5);
+    }
+    function stopTimer() { clearInterval(timer); timer = undefined; }
+    async function play(fromInteraction) {
+      if (!AudioContext || disposed) return;
+      wanted = true;
+      toggle.disabled = true;
       try {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (!AudioContext) return;
-        audioCtx = new AudioContext();
-        const masterGain = audioCtx.createGain();
-        masterGain.gain.setValueAtTime((Number(volume ? volume.value : 0.4) || 0.4) * 0.15, audioCtx.currentTime);
-        masterGain.connect(audioCtx.destination);
-
-        const notes = [130.81, 164.81, 196.00, 246.94, 329.63, 392.00];
-        let noteIdx = 0;
-
-        function playStrum() {
-          if (!audioCtx || audioCtx.state === 'closed') return;
-          const osc = audioCtx.createOscillator();
-          const noteGain = audioCtx.createGain();
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(notes[noteIdx % notes.length], audioCtx.currentTime);
-          noteIdx++;
-
-          noteGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-          noteGain.gain.exponentialRampToValueAtTime(0.35, audioCtx.currentTime + 0.15);
-          noteGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 3.2);
-
-          osc.connect(noteGain);
-          noteGain.connect(masterGain);
-          osc.start();
-          osc.stop(audioCtx.currentTime + 3.5);
+        if (!ctx) {
+          ctx = new AudioContext(); master = ctx.createGain();
+          master.gain.setValueAtTime(level() * .15, ctx.currentTime);
+          master.connect(ctx.destination);
         }
-
-        playStrum();
-        synthTimer = setInterval(playStrum, 3800);
-      } catch (e) {}
+        if (ctx.state === 'suspended' && fromInteraction) await ctx.resume();
+        if (disposed || !wanted) return;
+        const running = ctx.state === 'running';
+        if (running && !timer) { strum(); timer = setInterval(strum, 3800); }
+        updateState(running);
+      } catch (_) { wanted = false; stopTimer(); updateState(false); }
+      finally { if (!disposed) toggle.disabled = false; }
     }
-
-    function stopSynth() {
-      if (synthTimer) { clearInterval(synthTimer); synthTimer = null; }
-      if (audioCtx) {
-        try { audioCtx.close(); } catch (e) {}
-        audioCtx = null;
-      }
-    }
-
-    function updateState(playing) {
-      isPlaying = playing;
-      if (icon) icon.textContent = playing ? '❚❚' : '▶';
-      if (status) status.textContent = playing ? (lang === 'ar' ? 'عزف الموسيقى' : 'Playing') : (lang === 'ar' ? 'صامت' : 'Paused');
-    }
-
-    function tryPlay() {
-      audio.volume = Number(volume ? volume.value : 0.4) || 0.4;
-      const promise = audio.play();
-      if (promise !== undefined) {
-        promise.then(() => {
-          updateState(true);
-        }).catch(() => {
-          startSynth();
-          updateState(true);
-        });
-      } else {
-        updateState(true);
-      }
-    }
-
     function pause() {
-      audio.pause();
-      stopSynth();
+      wanted = false; stopTimer();
+      if (ctx) ctx.suspend().catch(() => {});
       updateState(false);
     }
-
-    toggle.addEventListener('click', () => {
-      if (isPlaying) {
-        pause();
-      } else {
-        if (audioCtx && audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-        tryPlay();
-      }
+    toggle.addEventListener('click', () => playing ? pause() : play(true));
+    volume.addEventListener('input', () => {
+      if (ctx && master) master.gain.setValueAtTime(level() * .15, ctx.currentTime);
+      updateState(playing);
     });
-
-    if (volume) {
-      volume.addEventListener('input', (e) => {
-        const val = Number(e.target.value) || 0;
-        audio.volume = val;
-      });
-    }
-
-    tryPlay();
-    const resumeOnInteraction = () => {
-      if (!isPlaying) tryPlay();
-      window.removeEventListener('click', resumeOnInteraction);
-      window.removeEventListener('keydown', resumeOnInteraction);
-    };
-    window.addEventListener('click', resumeOnInteraction, { once: true });
-    window.addEventListener('keydown', resumeOnInteraction, { once: true });
+    updateState(false);
+    if (AudioContext) play(false);
+    else { toggle.disabled = true; volume.disabled = true; status.textContent = str('screen.audio.unavailable'); }
+    window.addEventListener('pagehide', () => {
+      disposed = true; wanted = false; stopTimer();
+      if (ctx) ctx.close().catch(() => {});
+    }, { once: true });
   }
 
   function apply(data) {
