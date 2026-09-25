@@ -42,12 +42,12 @@
 
 :root {
   /* palette */
-  --ink: #0B0A08;          /* page, scrims: a warm black */
-  --ink-2: #15130F;        /* deep shadows, the curtain field */
-  --paper: #EDE6D6;        /* wordmark, primary text, progress fill */
-  --paper-dim: #B9AF9C;    /* secondary text, labels, the second-script name */
-  --paper-faint: #7D7466;  /* rules beside the name, the legal line */
-  --rule: rgba(237, 230, 214, .18);
+  --ink: #0A0A0A;          /* page, scrims: a warm black */
+  --ink-2: #111111;        /* deep shadows, the curtain field */
+  --paper: #F2F2F2;        /* wordmark, primary text, progress fill */
+  --paper-dim: #B4B4B4;    /* secondary text, labels, the second-script name */
+  --paper-faint: #7A7A7A;  /* rules beside the name, the legal line */
+  --rule: rgba(242, 242, 242, .18);
   --red: #CB0101;          /* one use only: the leading tick of the progress fill */
 
   /* layout (1rem = 20px at 1920x1080, 13.3px at 1280x720) */

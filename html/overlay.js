@@ -60,7 +60,7 @@
   const Q = new URLSearchParams(location.search);
   if (Q.get('dev') === '1') {
     const ar = Q.get('lang') === 'ar';
-    if (Q.get('bg') !== 'none') document.body.style.setProperty('background', '#3a352c', 'important');
+    if (Q.get('bg') !== 'none') document.body.style.setProperty('background', '#353535', 'important');
     show({
       locale: ar ? 'ar' : 'en',
       dir: ar ? 'rtl' : 'ltr',
