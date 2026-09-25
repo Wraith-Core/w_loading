@@ -4,7 +4,7 @@ Every image, recording and typeface this resource ships, with where it came from
 
 ## Survey plates (`html/img/plates/`)
 
-Each plate was cropped inside the print, so no mount board, handwritten captions or publisher imprints remain. All seven were then graded with one recipe: automatic levels and exposure, a gentle S-curve, and a warm albumen monochrome ramp (shadows `#14110D`, mids `#6E6557`, highlights `#E4DCCB`). Each was saved as a 1920x1080 progressive JPEG at q80 (`hanging_rock.jpg` at q78, the step that keeps it under 500 KB). Their captions are the `screen.plates.<id>.*` keys in `locales/`.
+Each plate was cropped inside the print, so no mount board, handwritten captions or publisher imprints remain. All seven were then graded with one recipe: automatic levels and exposure, a gentle S-curve, and a warm albumen monochrome ramp (shadows `#14110D`, mids `#6E6557`, highlights `#E4DCCB`). Each was saved as a 1920x1080 progressive JPEG at q80 (`hanging_rock.jpg` at q78, the step that keeps it under 500 KB). That tone stays in the files only: the loading screen draws every plate black and white (`filter: grayscale(1)` on `.plate` in `html/loading.css`, as the launcher's plates), so no cream reaches the screen. Their captions are the `screen.plates.<id>.*` keys in `locales/`.
 
 | File | Photograph | Photographer, year | Source | Licence |
 |---|---|---|---|---|
