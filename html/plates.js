@@ -4,7 +4,9 @@
    Every plate is a real photograph with a named photographer, a source and a public-domain or
    CC0 licence (full list in CREDITS.md). All seven were cropped inside the print (no mount, no
    captions, no imprints) and graded with one recipe into a warm albumen monochrome
-   (shadows #14110D, mids #6E6557, highlights #E4DCCB), 1920x1080 progressive JPG.
+   (shadows #14110D, mids #6E6557, highlights #E4DCCB), 1920x1080 progressive JPG. That tone
+   stays in the files only: loading.css draws every plate with filter: grayscale(1), black and
+   white as the launcher's plates, so no cream reaches the screen.
 
      id       the key of its caption in the locales: screen.plates.<id>.title / .credit
      title_*  the caption when a locale lacks the key; credit likewise

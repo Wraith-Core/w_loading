@@ -9,7 +9,7 @@ version '2.0.0'
 description 'Wraith Core loading screen ("The Survey Plates"), and the loading curtain drawn between character selection, creation and the spawn'
 
 -- ════════════════════════════════════════════════════════════════════════════
--- Two pages, one identity (ink, aged paper, RDR typography, one red):
+-- Two pages, one identity (ink and paper in black and white, RDR typography, one red):
 --
 --   html/index.html    the loading screen shown from the moment the player connects: real
 --                      survey photographs of the 1860s-70s West (public domain / CC0, credited

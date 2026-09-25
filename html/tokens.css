@@ -2,7 +2,8 @@
    Wraith Core · shared tokens for the loading screen (index.html) and the loading
    curtain (overlay.html): palette, fonts, the type roles and the shared motion curve.
 
-   Ink and aged paper, RDR typography, one red. Every file is local (the connection
+   Ink and paper in black and white (the launcher's neutral palette: no cream, no warm
+   tint), RDR typography, one red. Every file is local (the connection
    loadscreen runs before any other NUI and must work offline).
    ════════════════════════════════════════════════════════════════════════════ */
 
@@ -42,7 +43,7 @@
 
 :root {
   /* palette */
-  --ink: #0A0A0A;          /* page, scrims: a warm black */
+  --ink: #0A0A0A;          /* page, scrims: a neutral black */
   --ink-2: #111111;        /* deep shadows, the curtain field */
   --paper: #F2F2F2;        /* wordmark, primary text, progress fill */
   --paper-dim: #B4B4B4;    /* secondary text, labels, the second-script name */

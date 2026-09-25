@@ -19,6 +19,9 @@ body { background: var(--ink); }
   position: absolute; inset: -2%;
   background: var(--ink) center / cover no-repeat;
   will-change: transform, opacity;
+  /* the photographs are printed in black and white, as the launcher's plates (the files keep
+     their albumen tone; the page drops it) */
+  filter: grayscale(1);
   /* develop-in (one-off filter) + the Ken Burns drift; the x direction alternates plate by
      plate (.alt) and mirrors in Arabic */
   animation: develop var(--develop, 1.8s) var(--ease) backwards, drift-a 18s linear both;
@@ -28,8 +31,8 @@ body { background: var(--ink); }
 [dir=rtl] .plate.alt { animation-name: develop, drift-a; }
 
 @keyframes develop {
-  from { opacity: 0; filter: brightness(1.35) contrast(.9) blur(3px); }
-  to   { opacity: 1; filter: brightness(1) contrast(1) blur(0); }
+  from { opacity: 0; filter: grayscale(1) brightness(1.35) contrast(.9) blur(3px); }
+  to   { opacity: 1; filter: grayscale(1) brightness(1) contrast(1) blur(0); }
 }
 @keyframes drift-a {
   from { transform: scale(1.04) translate3d(0, 0, 0); }
