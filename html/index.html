@@ -1,40 +1,68 @@
 <!doctype html>
 <html lang="en" dir="ltr">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Wraith Core</title><link rel="stylesheet" href="loading.css"><link rel="stylesheet" href="store-adapter.css"><link rel="stylesheet" href="store-theme.css" data-wraith-store-theme></head>
-<body class="loading-screen wst-root">
-  <div class="landscape" aria-hidden="true"></div><div class="shade" aria-hidden="true"></div><div class="paper-grain" aria-hidden="true"></div>
-  <div class="screen-frame" aria-hidden="true"></div>
-  <header class="masthead">
-    <div class="brand"><span class="brand-mark">W</span><span><b>WRAITH CORE</b><small id="server">REDM</small></span></div>
-    <div class="audio-player" id="audio-player">
-      <button type="button" class="audio-toggle" id="audio-toggle" aria-pressed="false" aria-label="Play music">
-        <span class="audio-icon" id="audio-icon" aria-hidden="true">▶</span>
-      </button>
-      <div class="audio-meta">
-        <span class="audio-title" id="audio-title"></span>
-        <span class="audio-status" id="audio-status"></span>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wraith Core</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="loading.css">
+</head>
+<body>
+  <!-- 1. the plate: a real survey photograph, at most two layers (the one on screen and the one developing over it) -->
+  <div class="plates" id="plates" aria-hidden="true"></div>
+  <!-- 2. scrims (bottom band for the type, top band for the caption, the plate-edge burn) and 3. grain -->
+  <div class="scrim" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- 4. type -->
+  <div class="ui" id="ui">
+    <header class="top">
+      <div class="caption">
+        <p class="cap-body" id="cap-body">
+          <span class="cap-no t-num" id="cap-no"></span>
+          <span class="cap-title" id="cap-title"></span>
+          <span class="cap-credit" id="cap-credit"></span>
+        </p>
       </div>
-      <div class="audio-volume-container">
-        <input type="range" id="audio-volume" min="0" max="1" step="0.05" value="0.4" class="audio-slider" aria-label="Music volume">
+      <div class="music" id="music">
+        <button type="button" class="music-toggle t-label" id="music-toggle" aria-pressed="false">
+          <span id="music-label"></span> <b id="music-state"></b>
+        </button>
+        <input type="range" class="music-vol" id="music-vol" min="0" max="1" step="0.01" value="0.25">
       </div>
-    </div>
-    <span class="edition" id="edition"></span>
-  </header>
-  <main class="journey">
-    <div class="eyebrow"><span></span><span id="eyebrow"></span></div>
-    <h1 id="headline"></h1>
-    <span class="title-divider" aria-hidden="true"></span>
-    <p class="intro" id="intro"></p><p class="welcome" id="welcome"></p>
-  </main>
-  <footer class="journey-footer">
-    <section class="loading-progress wst-panel" aria-labelledby="st">
-      <div class="native-frame wst-frame" aria-hidden="true"><span class="fr-t wst-fr-t"></span><span class="fr-b wst-fr-b"></span><span class="fr-l wst-fr-l"></span><span class="fr-r wst-fr-r"></span><span class="fr-tl wst-fr-tl"></span><span class="fr-tr wst-fr-tr"></span><span class="fr-bl wst-fr-bl"></span><span class="fr-br wst-fr-br"></span></div>
-      <div class="progress-heading"><div><span class="eyebrow" id="progress-label"></span><h2 id="st" aria-live="polite"></h2></div><span class="percentage" dir="ltr"><b id="pct">0</b><small>%</small></span></div>
-      <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress"><div id="bar"></div></div>
-      <ol class="chapters"><li data-step="0"><span class="chapter-dot">01</span><span id="step-0"></span></li><li data-step="1"><span class="chapter-dot">02</span><span id="step-1"></span></li><li data-step="2"><span class="chapter-dot">03</span><span id="step-2"></span></li></ol>
+    </header>
+
+    <section class="mark">
+      <p class="welcome" id="welcome" hidden></p>
+      <h1 class="wordmark" id="wordmark">
+        <span class="wm-primary" id="wm-primary"></span>
+        <span class="wm-second" id="wm-second"></span>
+      </h1>
+      <p class="tagline" id="tagline"></p>
     </section>
-    <aside class="travel-note wst-panel" id="tip"><div class="wst-frame" aria-hidden="true"><span class="wst-fr-t"></span><span class="wst-fr-b"></span><span class="wst-fr-l"></span><span class="wst-fr-r"></span><span class="wst-fr-tl"></span><span class="wst-fr-tr"></span><span class="wst-fr-bl"></span><span class="wst-fr-br"></span></div><div class="note-heading"><span class="note-star">✦</span><span id="tip-label"></span><span class="note-count" id="tip-count" dir="ltr"></span></div><p id="tip-text"></p></aside>
-  </footer>
-  <div class="imprint"><span>WRAITH STUDIO <i>◆</i> REDM</span><span>WRAITH CORE</span></div>
+
+    <aside class="tip" id="tip" hidden>
+      <p class="tip-head t-label"><span id="tip-label"></span><span class="tip-count t-num" id="tip-count"></span></p>
+      <p class="tip-text" id="tip-text"></p>
+    </aside>
+
+    <footer class="load" id="load">
+      <div class="load-row">
+        <span class="status t-label" id="status" aria-live="polite"></span>
+        <span class="pct t-num"><b id="pct">0</b><small>%</small></span>
+      </div>
+      <div class="track" id="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <i class="fill"></i><i class="tick"></i>
+      </div>
+    </footer>
+
+    <p class="legal">
+      <span id="legal"></span>
+      <span class="contact" id="contact" hidden></span>
+    </p>
+  </div>
+
+  <script src="plates.js"></script>
   <script src="loading.js"></script>
-</body></html>
+</body>
+</html>

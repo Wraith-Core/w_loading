@@ -1,7 +1,28 @@
 Config = {}
 
---- The name under the title on the loading screen.
+--- The server's name: the title of the loading screen page and the curtain's label.
+--- (The wordmark on both pages is the name itself, WRAITH CORE / ريث كور.)
 Config.ServerName = 'Wraith Core RedM'
+
+--- A contact address shown in small type at the bottom of the loading screen, next to the
+--- "not approved, sponsored, or endorsed by Rockstar Games" line. Rockstar's licence for
+--- FiveM/RedM servers (PLA 2.3) asks user-facing server material to carry both, so fill it in.
+--- Empty = not shown.
+Config.ContactEmail = ''
+
+--- The survey plates behind the loading screen, in playing order (the screen opens on a random
+--- one and continues in this order). Remove an id to take a plate out of the rotation; the ids
+--- and their credits are in html/plates.js and CREDITS.md. A plate is also skipped by itself in
+--- the layout where the wordmark would cover its subject (hanging_rock is left out in Arabic).
+Config.Plates = {
+    'cape_horn',
+    'tetons',
+    'sand_hills',
+    'hanging_rock',
+    'mirror_lake',
+    'canyon_de_chelly',
+    'columbia',
+}
 
 --- Seconds after the player's first spawn before the loading screen is dropped on its own if
 --- nothing dismissed it (w_creators dismisses it when the selection is ready; this is only a
@@ -24,6 +45,8 @@ Config.SafetyTimeout = 90
 --
 -- Every text of both pages lives in locales/ar.json and locales/en.json:
 --   curtain.*        the curtain lines (keys passed to exports.w_loading:Show(key))
---   screen.*         the loading screen (welcome line, phases, tip label, build line)
---   tips.*           the tips rotated on the loading screen (add a key to add a tip)
+--   screen.*         the loading screen (welcome line, phases, tip label, music, plate
+--                    captions screen.plates.<id>.title / .credit, the licence line)
+--   tips.*           the tips rotated on the loading screen (add a key to add a tip; write a
+--                    key as [ESC] and it is drawn as a key cap)
 -- ════════════════════════════════════════════════════════════════════════════

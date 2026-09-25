@@ -46,8 +46,21 @@ local function screenStrings()
     return key, strings, tips
 end
 
+---Config.Plates as a plain list of ids (anything else is dropped; empty = every plate).
+---@return string[]
+local function plateIds()
+    local ids = {}
+    if type(Config.Plates) == 'table' then
+        for _, id in ipairs(Config.Plates) do
+            if type(id) == 'string' and id ~= '' then ids[#ids + 1] = id end
+        end
+    end
+    return ids
+end
+
 AddEventHandler('playerConnecting', function(name, _, deferrals)
     local key, strings, tips = screenStrings()
+    local plates = plateIds()
 
     deferrals.handover({
         wl_name    = name,
@@ -57,5 +70,7 @@ AddEventHandler('playerConnecting', function(name, _, deferrals)
         wl_strings = strings,
         wl_tips    = tips,
         wl_build   = GetConvar('sv_enforceGameBuild', ''),
+        wl_contact = type(Config.ContactEmail) == 'string' and Config.ContactEmail or '',
+        wl_plates  = #plates > 0 and plates or nil,
     })
 end)

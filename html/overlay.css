@@ -1,0 +1,60 @@
+/* ════════════════════════════════════════════════════════════════════════════
+   Wraith Core · the loading curtain (ui_page)
+
+   The same system as the loading screen, reduced: an ink field, the name small at the bottom
+   inline-start, one status line where the loading screen's status sat, and an indeterminate
+   hairline. The page stays transparent while the curtain is down.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+html, body { background: transparent !important; }
+body { pointer-events: none; }
+
+.curtain {
+  position: fixed; inset: 0;
+  background: var(--ink-2);
+  opacity: 0; visibility: hidden;
+  transition: opacity .35s var(--ease), visibility 0s linear .35s;
+}
+.curtain.on {
+  opacity: 1; visibility: visible;
+  transition: opacity .35s var(--ease), visibility 0s;
+}
+/* nothing moves while the curtain is down */
+.curtain:not(.on) .grain, .curtain:not(.on) .c-track i { animation-play-state: paused; }
+/* the grain lifts out of the ink: inverted, screened, faint */
+.curtain .grain { filter: invert(1); mix-blend-mode: screen; opacity: .07; }
+
+/* one column on the bottom edge: the name, small, then the status line and the hairline
+   exactly where the loading screen's progress row sat. A second line (sub) pushes the name up
+   instead of crowding it. */
+.c-foot {
+  position: absolute; inset-inline: var(--edge); bottom: var(--foot);
+  display: flex; flex-direction: column; align-items: flex-start;
+}
+.c-mark { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.4rem; }
+.c-primary { font: 2.4rem/1 var(--f-mark); letter-spacing: .02em; color: var(--paper); }
+.c-second { display: flex; align-items: center; gap: .8rem; font: 1.15rem/1 var(--f-mark-ar); color: var(--paper-dim); }
+.c-second::before { content: ''; flex: none; width: 1.6rem; height: 1px; background: var(--paper-faint); }
+
+.c-status { margin-bottom: .8rem; min-height: 1.2em; }
+.c-sub { margin: -.4rem 0 .8rem; font: .95rem/1.4 var(--f-body); color: var(--paper-dim); }
+.c-sub:empty { display: none; }
+.c-track { align-self: stretch; position: relative; height: 1px; background: var(--rule); overflow: hidden; }
+.c-track i {
+  position: absolute; top: 0; inset-inline-start: 0;
+  width: 18%; height: 1px;
+  background: var(--paper);
+  animation: sweep 1.6s ease-in-out infinite alternate;
+}
+@keyframes sweep { from { transform: translateX(0); } to { transform: translateX(455.6%); } }
+[dir=rtl] .c-track i { animation-name: sweep-rtl; }
+@keyframes sweep-rtl { from { transform: translateX(0); } to { transform: translateX(-455.6%); } }
+
+/* Arabic: the Arabic name leads, the Latin one follows (tracked, the only tracked script) */
+[dir=rtl] .c-primary { font: 2.5rem/1.15 var(--f-mark-ar); letter-spacing: 0; }
+[dir=rtl] .c-second { font: .95rem/1 var(--f-mark); letter-spacing: .2em; }
+[dir=rtl] .c-sub { font: 1.1rem/1.5 var(--f-body-ar); }
+
+@media (prefers-reduced-motion: reduce) {
+  .c-track i { animation-duration: 3.2s; }
+}

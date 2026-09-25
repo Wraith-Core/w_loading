@@ -5,21 +5,24 @@ lua54 'yes'
 
 name 'w_loading'
 author 'Wraith Studio'
-version '1.2.0'
-description 'Wraith Core loading screen, and the loading curtain drawn between character selection, creation and the spawn'
+version '2.0.0'
+description 'Wraith Core loading screen ("The Survey Plates"), and the loading curtain drawn between character selection, creation and the spawn'
 
 -- ════════════════════════════════════════════════════════════════════════════
--- Two pages, one identity (ink, paper textures and RDR typography):
+-- Two pages, one identity (ink, aged paper, RDR typography, one red):
 --
---   html/index.html    the loading screen shown from the moment the player connects. It stays
---                      up (loadscreen_manual_shutdown) until w_creators has the character
---                      selection ready and drops it -- so the world is never seen underneath.
---                      Its texts arrive through the connection handover (server/main.lua) in
---                      the server language (convar w_lib:locale).
+--   html/index.html    the loading screen shown from the moment the player connects: real
+--                      survey photographs of the 1860s-70s West (public domain / CC0, credited
+--                      on screen and in CREDITS.md), the name as the only mark, tips, honest
+--                      progress and period music. It stays up (loadscreen_manual_shutdown) until
+--                      w_creators has the character selection ready and drops it -- so the
+--                      world is never seen underneath. Its texts arrive through the connection
+--                      handover (server/main.lua) in the server language (convar w_lib:locale).
 --   html/overlay.html  the loading curtain: exports.w_loading:Show(key) / Hide(). w_creators'
 --                      fade helpers draw it over every transition (selection -> creator ->
 --                      spawn), so the player sees a loading card, never a black screen. Its
 --                      texts come from the library dictionary (locales/ar.json, en.json).
+--   html/tokens.css    the palette, the fonts and the type roles both pages share.
 -- ════════════════════════════════════════════════════════════════════════════
 
 dependency 'w_lib'
@@ -33,11 +36,17 @@ ui_page 'html/overlay.html'
 files {
     'html/index.html',
     'html/overlay.html',
-    'html/*.css',
-    'html/*.js',
+    'html/tokens.css',
+    'html/loading.css',
+    'html/overlay.css',
+    'html/plates.js',
+    'html/loading.js',
+    'html/overlay.js',
     'html/fonts/*.woff2',
-    'html/img/*',
-    'html/store-theme/**/*',
+    'html/fonts/*.txt',     -- the OFL licences travel with the fonts they cover
+    'html/img/pm-grain.png',
+    'html/img/plates/*.jpg',
+    'html/music/*.ogg',
     'locales/*.json',
 }
 

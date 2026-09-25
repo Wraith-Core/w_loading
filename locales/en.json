@@ -9,8 +9,10 @@
   },
   "screen": {
     "welcome": "Welcome, %s",
-    "tip_label": "THE TRAVELLER’S NOTES",
-    "build": "BUILD %s",
+    "headline": "Your story begins here.",
+    "tip_label": "From the traveller’s guide",
+    "progress_label": "Your journey into the world",
+    "build": "Build %s",
     "phase": {
       "connecting": "Connecting to the server",
       "resources": "Preparing your journey",
@@ -21,33 +23,52 @@
       "finishing": "Finishing up",
       "ready": "Preparing your characters"
     },
-    "eyebrow": "A WORLD OF YOUR OWN",
-    "headline": "YOUR STORY STARTS HERE",
-    "intro": "Towns to discover. Strangers with stories. A place to write your own.",
-    "edition": "WRAITH CORE · RED DEAD",
-    "progress_label": "YOUR JOURNEY INTO THE WORLD",
-    "steps": {
-      "0": "Connection",
-      "1": "The world",
-      "2": "Your character"
-    },
     "audio": {
-      "title": "TRAIL MUSIC",
-      "volume": "Music volume",
-      "play": "Play music",
-      "pause": "Pause music",
-      "playing": "Playing",
-      "paused": "Paused",
-      "muted": "Muted",
-      "unavailable": "Audio unavailable"
-    }
+      "title": "Music",
+      "on": "On",
+      "off": "Off",
+      "volume": "Music volume"
+    },
+    "plates": {
+      "cape_horn": {
+        "title": "Cape Horn near Celilo",
+        "credit": "Carleton E. Watkins, 1867"
+      },
+      "tetons": {
+        "title": "The Tetons and the Snake River",
+        "credit": "Ansel Adams, 1942"
+      },
+      "sand_hills": {
+        "title": "Desert Sand Hills near Sink of Carson, Nevada",
+        "credit": "Timothy H. O’Sullivan, 1867"
+      },
+      "hanging_rock": {
+        "title": "Hanging Rock, Foot of Echo Cañon",
+        "credit": "Andrew J. Russell, 1867–68"
+      },
+      "mirror_lake": {
+        "title": "Mirror Lake, Valley of the Yosemite",
+        "credit": "Eadweard Muybridge, 1872"
+      },
+      "canyon_de_chelly": {
+        "title": "Head of Cañyon de Chelle, Looking Down",
+        "credit": "Timothy H. O’Sullivan, 1873"
+      },
+      "columbia": {
+        "title": "View on the Columbia, Cascades",
+        "credit": "Carleton E. Watkins, 1867"
+      }
+    },
+    "legal": "Wraith Core is not approved, sponsored, or endorsed by Rockstar Games.",
+    "contact": "Contact: %s"
   },
   "tips": {
-    "menu": "Press ESC for the Wraith menu: map, settings and quit.",
+    "menu": "Press [ESC] for the Wraith menu: the map, settings and quit.",
     "creator": "Take your time creating your character; the wardrobe can change your look later.",
     "horse": "Care for your horse: brush and feed it to raise the bond and its stats.",
     "needs": "Watch hunger and thirst on the HUD; food and drink are sold in the stores.",
     "stables": "Stables sell horses, keep them and repair their tack.",
-    "law": "Mind the town laws; the law watches the towns and the roads."
+    "law": "Mind the town laws; the law watches the towns and the roads.",
+    "loading": "While you wait, [M] turns the music on or off, and [←] [→] leaf through these notes."
   }
 }

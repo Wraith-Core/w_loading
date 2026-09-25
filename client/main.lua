@@ -8,6 +8,8 @@
 --   exports.w_loading:Hide()                    lift it
 --   exports.w_loading:IsShown()
 --   TriggerEvent('w_loading:show', key) / ('w_loading:hide')  -- same, for resources without exports
+--   exports.w_loading:Dismiss()                 drop the loading screen with its exit fade
+--                                              (or TriggerEvent('w_loading:dismiss'))
 --
 --   The texts follow the library language (locales/ar.json, en.json) and re-render live on
 --   'w_lib:setLocale' while the curtain is up.
@@ -81,6 +83,36 @@ AddEventHandler('onResourceStop', function(resource)
     if shown and resource == 'w_creators' then hide() end
 end)
 
+-- ── the loading screen (html/index.html) ────────────────────────────────────
+-- The page cannot see the client VM; two messages go to it with SendLoadingScreenMessage:
+--   wl_ready   the client scripts are running (sent once, now): the page shows 100% and
+--              "Preparing your characters" for the rest of the wait
+--   wl_exit    the screen is about to be dropped: the page fades to ink and fades the music
+--              out, and the screen is shut down EXIT_MS later (exports.w_loading:Dismiss())
+local EXIT_MS = 800
+local dismissing = false
+
+local function screenMessage(eventName)
+    pcall(SendLoadingScreenMessage, json.encode({ eventName = eventName }))
+end
+
+screenMessage('wl_ready')
+
+---Drop the loading screen with its exit fade (both layers, the game's and the NUI one).
+---Safe to call more than once, and after the screen is gone.
+local function dismiss()
+    if dismissing then return end
+    dismissing = true
+    screenMessage('wl_exit')
+    SetTimeout(EXIT_MS, function()
+        pcall(ShutdownLoadingScreen)
+        pcall(ShutdownLoadingScreenNui)
+    end)
+end
+
+exports('Dismiss', dismiss)
+AddEventHandler('w_loading:dismiss', dismiss)
+
 -- ── the guard on the loading screen ─────────────────────────────────────────
 -- w_creators drops the loading screen once the character selection is ready. Should it
 -- never get there (a script error, a missing resource), the player would sit behind the
@@ -91,6 +123,6 @@ AddEventHandler('playerSpawned', function()
         if GetResourceState('w_creators') ~= 'started' then
             w.print.warn('w_creators is not running - dropping the loading screen on the guard')
         end
-        ShutdownLoadingScreenNui()
+        dismiss()
     end)
 end)
