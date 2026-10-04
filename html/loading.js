@@ -26,8 +26,8 @@
 (() => {
   'use strict';
 
-  const BRAND_LATIN = 'WRAITH CORE';
-  const BRAND_ARABIC = 'ريث كور';
+  const BRAND_LATIN = 'RED RIVER';
+  const BRAND_ARABIC = 'ريد ريفر';
 
   const PLATE_EVERY = 16000;   // a new plate starts developing every 16 s
   const PLATE_XFADE = 2400;    // the incoming plate develops over 2.4 s
@@ -666,7 +666,7 @@
    *  has requested anything). A face that fails simply leaves its fallback. */
   function loadFonts() {
     if (!document.fonts || !document.fonts.load) return Promise.resolve();
-    const AR = 'ريث كور ١٢٣', EN = 'WRAITH CORE 0123';
+    const AR = 'ريد ريفر ١٢٣', EN = 'RED RIVER 0123';
     const faces = lang === 'ar'
       ? [['1em "Lalezar"', AR], ['1em "Amiri"', AR], ['1em "Amiri"', EN], ['1em "Aref Ruqaa"', AR],
         ['700 1em "Tajawal"', AR], ['400 1em "Tajawal"', AR], ['1em "RDR Lino"', EN], ['1em "RDR Catalogue"', EN]]

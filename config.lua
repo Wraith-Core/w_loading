@@ -2,7 +2,7 @@ Config = {}
 
 --- The server's name: the title of the loading screen page and the curtain's label.
 --- (The wordmark on both pages is the name itself, WRAITH CORE / ريث كور.)
-Config.ServerName = 'Wraith Core RedM'
+Config.ServerName = 'ريد ريفر | Red River'
 
 --- A contact address shown in small type at the bottom of the loading screen, next to the
 --- "not approved, sponsored, or endorsed by Rockstar Games" line. Rockstar's licence for

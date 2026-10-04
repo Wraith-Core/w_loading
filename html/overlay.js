@@ -8,8 +8,8 @@
 (() => {
   'use strict';
 
-  const BRAND_LATIN = 'WRAITH CORE';
-  const BRAND_ARABIC = 'ريث كور';
+  const BRAND_LATIN = 'RED RIVER';
+  const BRAND_ARABIC = 'ريد ريفر';
   const root = document.documentElement;
   const curtain = document.getElementById('curtain');
   const text = document.getElementById('text');
@@ -30,7 +30,7 @@
 
   // fetch the faces now, while the curtain is down, so its first raise never waits on them
   if (document.fonts && document.fonts.load) {
-    [['1em "RDR Lino"', 'WRAITH CORE'], ['1em "Hapna Slab"', 'Loading'], ['1em "Lalezar"', BRAND_ARABIC],
+    [['1em "RDR Lino"', BRAND_LATIN], ['1em "Hapna Slab"', 'Loading'], ['1em "Lalezar"', BRAND_ARABIC],
       ['700 1em "Tajawal"', 'جارٍ'], ['1em "Amiri"', 'جارٍ']]
       .forEach(([font, sample]) => document.fonts.load(font, sample).catch(() => null));
   }
