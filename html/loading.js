@@ -154,7 +154,7 @@
     $('tagline').textContent = str('screen.headline');
     $('tip-label').textContent = str('screen.tip_label');
     $('progress').setAttribute('aria-label', str('screen.progress_label'));
-    $('legal').textContent = str('screen.legal');
+    // 2026-11-04 (owner): no "not approved by Rockstar Games" line on the loading screen
     const contact = typeof H.wl_contact === 'string' ? H.wl_contact.trim() : '';
     if (contact) {
       fillTemplate($('contact'), str('screen.contact', '%s'), contact);
