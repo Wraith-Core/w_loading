@@ -1,3 +1,6 @@
+/* ui-scale */
+:root{--ws-px:max(.6667px,min(.0925926vh,.0520833vw));--ws-fpx:max(.8px,min(.0925926vh,.0520833vw));--ws-gutter:max(0px,calc((100vw - 177.7778vh) / 2))}
+
 /* ════════════════════════════════════════════════════════════════════════════
    Wraith Core · the loading screen ("The Survey Plates")
 
@@ -31,7 +34,7 @@ body { background: var(--ink); }
 [dir=rtl] .plate.alt { animation-name: develop, drift-a; }
 
 @keyframes develop {
-  from { opacity: 0; filter: grayscale(1) brightness(1.35) contrast(.9) blur(3px); }
+  from { opacity: 0; filter: grayscale(1) brightness(1.35) contrast(.9) blur(calc(3 * var(--ws-px))); }
   to   { opacity: 1; filter: grayscale(1) brightness(1) contrast(1) blur(0); }
 }
 @keyframes drift-a {
@@ -71,11 +74,11 @@ html:not(.is-ready) .ui { visibility: hidden; }
 .cap-body.is-out { opacity: 0; transition-duration: .3s; }
 .cap-no { font-size: 1rem; line-height: 1; color: var(--paper-dim); }
 .cap-title {
-  font: max(11px, .8rem)/1.4 var(--f-body);
+  font: max(calc(11 * var(--ws-fpx)), .8rem)/1.4 var(--f-body);
   text-transform: uppercase; letter-spacing: .16em;
   color: var(--paper);
 }
-.cap-credit { font: max(11px, .75rem)/1.3 var(--f-body); letter-spacing: .08em; color: var(--paper-dim); }
+.cap-credit { font: max(calc(11 * var(--ws-fpx)), .75rem)/1.3 var(--f-body); letter-spacing: .08em; color: var(--paper-dim); }
 
 .music { display: flex; align-items: center; gap: .9rem; flex: none; }
 .music-toggle {
@@ -83,14 +86,14 @@ html:not(.is-ready) .ui { visibility: hidden; }
   color: var(--paper-dim);
 }
 .music-toggle b { font-weight: inherit; color: var(--paper); margin-inline-start: .45em; }
-.music-toggle:focus-visible, .music-vol:focus-visible { outline: 1px solid var(--rule); outline-offset: .45rem; }
+.music-toggle:focus-visible, .music-vol:focus-visible { outline: max(1px, calc(1 * var(--ws-px))) solid var(--rule); outline-offset: .45rem; }
 .music-vol {
   --v: 25%;
   -webkit-appearance: none; appearance: none;
   width: 4rem; height: 1.1rem; background: transparent; cursor: pointer;
 }
 .music-vol::-webkit-slider-runnable-track {
-  height: 1px;
+  height: max(1px, calc(1 * var(--ws-px)));
   background: linear-gradient(to right, var(--paper-dim) var(--v), var(--rule) var(--v));
 }
 [dir=rtl] .music-vol::-webkit-slider-runnable-track {
@@ -98,7 +101,7 @@ html:not(.is-ready) .ui { visibility: hidden; }
 }
 .music-vol::-webkit-slider-thumb {
   -webkit-appearance: none; appearance: none;
-  width: 2px; height: 9px; margin-top: -4px;
+  width: max(2px, calc(2 * var(--ws-px))); height: calc(9 * var(--ws-px)); margin-top: calc(-4 * var(--ws-px));
   border: 0; border-radius: 0; background: var(--paper);
 }
 .music.is-off .music-toggle b { color: var(--paper-dim); }
@@ -123,7 +126,7 @@ html:not(.is-ready) .ui { visibility: hidden; }
   font: 2.3rem/1 var(--f-mark-ar);
   color: var(--paper-dim);
 }
-.wm-second::before { content: ''; flex: none; width: 3rem; height: 1px; background: var(--paper-faint); }
+.wm-second::before { content: ''; flex: none; width: 3rem; height: max(1px, calc(1 * var(--ws-px))); background: var(--paper-faint); }
 .tagline { margin-top: 1.3rem; font: 1.1rem/1.4 var(--f-body); color: var(--paper-dim); }
 
 /* the tip column, bottom inline-end */
@@ -134,7 +137,7 @@ html:not(.is-ready) .ui { visibility: hidden; }
 .tip-head {
   display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
   padding-bottom: .7rem; margin-bottom: .9rem;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: max(1px, calc(1 * var(--ws-px))) solid var(--rule);
 }
 .tip-count { font-size: .95rem; line-height: 1; color: var(--paper-dim); }
 .tip-text {
@@ -150,7 +153,7 @@ kbd {
   display: inline-block; min-width: 1.75em;
   font: .95rem/1 var(--f-num); letter-spacing: .06em; text-align: center;
   padding: .2em .4em .1em; margin: 0 .12em;
-  border: 1px solid rgba(242, 242, 242, .4); border-radius: 2px;
+  border: max(1px, calc(1 * var(--ws-px))) solid rgba(242, 242, 242, .4); border-radius: max(2px, calc(2 * var(--ws-px)));
   color: var(--paper);
   vertical-align: .08em;
   direction: ltr; unicode-bidi: isolate; white-space: nowrap;
@@ -169,11 +172,11 @@ kbd.is-arrow { font: 1.05rem/.9 'Segoe UI Symbol', 'Segoe UI', sans-serif; lette
 .pct { font-size: 2.2rem; line-height: .8; color: var(--paper); white-space: nowrap; }
 .pct b { font-weight: inherit; }
 .pct small { font-size: .45em; color: var(--paper-dim); margin-inline-start: .12em; }
-.track { --p: 0; position: relative; height: 1px; background: var(--rule); }
+.track { --p: 0; position: relative; height: max(1px, calc(1 * var(--ws-px))); background: var(--rule); }
 /* the fill scales and the tick rides a rail: both are transforms, so both stay on the compositor */
 .fill, .tick { position: absolute; transition: transform .6s var(--ease); }
 .fill {
-  top: -.5px; inset-inline-start: 0; width: 100%; height: 2px;
+  top: min(-0.5px, calc(-0.5 * var(--ws-px))); inset-inline-start: 0; width: 100%; height: max(2px, calc(2 * var(--ws-px)));
   background: var(--paper);
   transform-origin: left center;
   transform: scaleX(var(--p));
@@ -183,8 +186,8 @@ kbd.is-arrow { font: 1.05rem/.9 'Segoe UI Symbol', 'Segoe UI', sans-serif; lette
 [dir=rtl] .tick { transform: translateX(calc((1 - var(--p)) * 100%)); }
 /* the one red on the page: a 2x9 tick at the leading edge */
 .tick::after {
-  content: ''; position: absolute; inset-inline-end: -1px; top: -4px;
-  width: 2px; height: 9px; background: var(--red);
+  content: ''; position: absolute; inset-inline-end: min(-1px, calc(-1 * var(--ws-px))); top: calc(-4 * var(--ws-px));
+  width: max(2px, calc(2 * var(--ws-px))); height: calc(9 * var(--ws-px)); background: var(--red);
 }
 .load.is-idle .tick::after { animation: breathe 1.6s ease-in-out infinite; }
 @keyframes breathe { 50% { opacity: .35; } }
@@ -193,7 +196,7 @@ kbd.is-arrow { font: 1.05rem/.9 'Segoe UI Symbol', 'Segoe UI', sans-serif; lette
 .legal {
   position: absolute; inset-inline: var(--edge); bottom: 1.15rem;
   display: flex; justify-content: space-between; gap: 2rem;
-  font: max(9px, .56rem)/1.2 var(--f-body);
+  font: max(calc(9 * var(--ws-fpx)), .56rem)/1.2 var(--f-body);
   letter-spacing: .12em; text-transform: uppercase;
   color: var(--paper-faint);
 }
@@ -211,7 +214,7 @@ kbd.is-arrow { font: 1.05rem/.9 'Segoe UI Symbol', 'Segoe UI', sans-serif; lette
 [dir=rtl] .tip-text { font: 1.25rem/1.7 var(--f-body-ar); }
 [dir=rtl] .cap-title { font: 1.35rem/1.25 var(--f-hand-ar); letter-spacing: 0; text-transform: none; color: var(--paper); opacity: .86; }
 [dir=rtl] .cap-credit { font: 700 .9rem/1.3 var(--f-ui-ar); letter-spacing: 0; }
-[dir=rtl] .legal { font: 400 max(10px, .62rem)/1.3 var(--f-ui-ar); letter-spacing: 0; text-transform: none; }
+[dir=rtl] .legal { font: 400 max(calc(10 * var(--ws-fpx)), .62rem)/1.3 var(--f-ui-ar); letter-spacing: 0; text-transform: none; }
 
 /* ── motion: the boot rise, one ease, no per-letter stagger ───────────────── */
 @keyframes rise { from { opacity: 0; transform: translateY(.6rem); } }
@@ -231,7 +234,7 @@ kbd.is-arrow { font: 1.05rem/.9 'Segoe UI Symbol', 'Segoe UI', sans-serif; lette
 }
 
 /* a narrow window (not a game resolution): the tip moves up under the music */
-@media (max-width: 1000px) {
+@media (max-aspect-ratio: 1000/1080) {
   .tip { bottom: auto; top: calc(var(--head) + 6rem); }
 }
 
