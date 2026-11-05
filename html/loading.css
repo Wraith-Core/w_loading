@@ -53,10 +53,10 @@ body { background: var(--ink); }
   background:
     /* the caption corner burns a little deeper, as the corners of a wet plate do, so the
        caption reads on a pale sky */
-    radial-gradient(52rem 20rem at var(--cap-x) 0%, rgba(10, 10, 10, .5) 0%, rgba(10, 10, 10, .3) 45%, rgba(10, 10, 10, 0) 100%),
-    radial-gradient(120% 90% at 50% 42%, rgba(10, 10, 10, 0) 52%, rgba(10, 10, 10, .62) 100%),
-    linear-gradient(to top, var(--ink) 0%, rgba(10, 10, 10, .95) 14%, rgba(10, 10, 10, .78) 30%, rgba(10, 10, 10, .35) 46%, rgba(10, 10, 10, 0) 62%),
-    linear-gradient(to bottom, rgba(10, 10, 10, .72) 0%, rgba(10, 10, 10, .3) 14%, rgba(10, 10, 10, 0) 26%);
+    radial-gradient(52rem 20rem at var(--cap-x) 0%, rgba(11, 10, 10, .5) 0%, rgba(11, 10, 10, .3) 45%, rgba(11, 10, 10, 0) 100%),
+    radial-gradient(120% 90% at 50% 42%, rgba(11, 10, 10, 0) 52%, rgba(11, 10, 10, .62) 100%),
+    linear-gradient(to top, var(--ink) 0%, rgba(11, 10, 10, .95) 14%, rgba(11, 10, 10, .78) 30%, rgba(11, 10, 10, .35) 46%, rgba(11, 10, 10, 0) 62%),
+    linear-gradient(to bottom, rgba(11, 10, 10, .72) 0%, rgba(11, 10, 10, .3) 14%, rgba(11, 10, 10, 0) 26%);
 }
 [dir=rtl] .scrim { --cap-x: 100%; }
 
@@ -94,10 +94,10 @@ html:not(.is-ready) .ui { visibility: hidden; }
 }
 .music-vol::-webkit-slider-runnable-track {
   height: max(1px, calc(1 * var(--ws-px)));
-  background: linear-gradient(to right, var(--paper-dim) var(--v), var(--rule) var(--v));
+  background: linear-gradient(to right, var(--red) var(--v), var(--rule) var(--v));
 }
 [dir=rtl] .music-vol::-webkit-slider-runnable-track {
-  background: linear-gradient(to left, var(--paper-dim) var(--v), var(--rule) var(--v));
+  background: linear-gradient(to left, var(--red) var(--v), var(--rule) var(--v));
 }
 .music-vol::-webkit-slider-thumb {
   -webkit-appearance: none; appearance: none;
@@ -177,7 +177,7 @@ kbd.is-arrow { font: 1.05rem/.9 'Segoe UI Symbol', 'Segoe UI', sans-serif; lette
 .fill, .tick { position: absolute; transition: transform .6s var(--ease); }
 .fill {
   top: min(-0.5px, calc(-0.5 * var(--ws-px))); inset-inline-start: 0; width: 100%; height: max(2px, calc(2 * var(--ws-px)));
-  background: var(--paper);
+  background: var(--red);
   transform-origin: left center;
   transform: scaleX(var(--p));
 }
