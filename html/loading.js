@@ -3,6 +3,8 @@
 
    Data: window.nuiHandoverData from server/main.lua
      wl_name     the player's name (the welcome line is hidden without one)
+     wl_discord_name / wl_discord_avatar   his Discord name and picture (w_connector's join, 2.0.6);
+                 the name wins over wl_name, the picture sits beside the welcome line
      wl_locale   'ar' | 'en'   (wl_dir follows)
      wl_strings  the flat screen.* strings of that language
      wl_tips     the tips.* strings as a list
@@ -50,6 +52,8 @@
     const l = Q.get('lang') === 'ar' ? 'ar' : 'en';
     window.nuiHandoverData = {
       wl_name: Q.has('name') ? Q.get('name') : 'Stranger',
+      wl_discord_name: Q.get('discord') || undefined,
+      wl_discord_avatar: Q.get('avatar') || undefined,
       wl_server: 'Wraith Core RedM',
       wl_locale: l,
       wl_dir: l === 'ar' ? 'rtl' : 'ltr',
@@ -126,11 +130,27 @@
 
   function renderWelcome() {
     const el = $('welcome');
-    // the Cfx colour codes (^1 .. ^9) some players keep in their names are not shown
-    const raw = typeof H.wl_name === 'string' ? H.wl_name.replace(/\^\d/g, '').trim() : '';
+    // 2.0.6: the Discord name (w_connector hands it over at the join) before the RedM account name,
+    // which is often a random one. The Cfx colour codes (^1 .. ^9) some players keep in their names are not shown.
+    const pick = (v) => (typeof v === 'string' ? v.replace(/\^\d/g, '').trim() : '');
+    const raw = pick(H.wl_discord_name) || pick(H.wl_name);
     const template = str('screen.welcome');
     if (!raw || !template) { el.hidden = true; return; }
     fillTemplate(el, template, shortName(raw));
+    // his Discord picture beside the line (only Discord's own image host is accepted)
+    const avatar = typeof H.wl_discord_avatar === 'string' && /^https:\/\/cdn\.discordapp\.com\/avatars\//.test(H.wl_discord_avatar)
+      ? H.wl_discord_avatar : '';
+    if (avatar) {
+      const img = document.createElement('img');
+      img.className = 'welcome-avatar';
+      img.alt = '';
+      img.decoding = 'async';
+      img.referrerPolicy = 'no-referrer';
+      img.addEventListener('error', () => img.remove());
+      img.src = avatar;
+      el.prepend(img);
+    }
+    el.classList.toggle('has-avatar', !!avatar);
     el.hidden = false;
   }
 

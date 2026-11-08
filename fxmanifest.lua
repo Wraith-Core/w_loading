@@ -5,7 +5,7 @@ lua54 'yes'
 
 name 'w_loading'
 author 'Wraith Studio'
-version '2.0.5'
+version '2.0.6'
 description 'Red River loading screen ("The Survey Plates"), and the loading curtain drawn between character selection, creation and the spawn'
 
 -- ════════════════════════════════════════════════════════════════════════════
