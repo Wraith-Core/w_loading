@@ -141,14 +141,16 @@
     const avatar = typeof H.wl_discord_avatar === 'string' && /^https:\/\/cdn\.discordapp\.com\/avatars\//.test(H.wl_discord_avatar)
       ? H.wl_discord_avatar : '';
     if (avatar) {
+      const plate = document.createElement('span');
+      plate.className = 'welcome-avatar';
       const img = document.createElement('img');
-      img.className = 'welcome-avatar';
       img.alt = '';
       img.decoding = 'async';
       img.referrerPolicy = 'no-referrer';
-      img.addEventListener('error', () => img.remove());
+      img.addEventListener('error', () => { plate.remove(); el.classList.remove('has-avatar'); });
       img.src = avatar;
-      el.prepend(img);
+      plate.append(img);
+      el.prepend(plate);
     }
     el.classList.toggle('has-avatar', !!avatar);
     el.hidden = false;

@@ -114,10 +114,19 @@ html:not(.is-ready) .ui { visibility: hidden; }
 }
 .welcome { font: 1.1rem/1.3 var(--f-body); color: var(--paper-dim); margin-bottom: 1rem; }
 .welcome bdi { color: var(--paper); }
-.welcome.has-avatar { display: flex; align-items: center; gap: .7rem; }
+/* the Discord picture: a small developed plate in the page's own inks, the one red as its mark band */
+.welcome.has-avatar { display: flex; align-items: center; gap: .9rem; }
 .welcome-avatar {
-  width: 2.6rem; height: 2.6rem; border-radius: 50%; object-fit: cover; flex: none;
-  border: 1px solid var(--paper-dim); box-shadow: 0 0 0 3px rgba(0, 0, 0, .35);
+  position: relative; flex: none; width: 3rem; height: 3rem;
+  border-inline-start: 3px solid var(--red);
+  background: var(--ink-2); box-shadow: 0 .35rem 1.2rem rgba(0, 0, 0, .55);
+}
+.welcome-avatar img {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(1) contrast(1.08) brightness(.95);
+}
+.welcome-avatar::after {      /* the plate's edge: one hairline, like the rules beside the name */
+  content: ''; position: absolute; inset: 0; border: 1px solid var(--rule); border-inline-start: 0; pointer-events: none;
 }
 .wordmark { font-weight: 400; }
 .wm-primary {
