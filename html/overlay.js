@@ -8,8 +8,8 @@
 (() => {
   'use strict';
 
-  const BRAND_LATIN = 'RED RIVER';
-  const BRAND_ARABIC = 'ريد ريفر';
+  let brandLatin = 'WRAITH CORE';
+  let brandArabic = 'ريث كور';
   const root = document.documentElement;
   const curtain = document.getElementById('curtain');
   const text = document.getElementById('text');
@@ -18,19 +18,22 @@
   const second = document.getElementById('c-second');
 
   function setLocale(d) {
-    if (!d || !d.locale) return;
+    if (!d) return;
+    if (typeof d.brandLatin === 'string' && d.brandLatin.trim()) brandLatin = d.brandLatin.trim();
+    if (typeof d.brandArabic === 'string' && d.brandArabic.trim()) brandArabic = d.brandArabic.trim();
+    if (!d.locale) return;
     const ar = d.locale === 'ar';
     root.lang = ar ? 'ar' : 'en';
     root.dir = d.dir === 'rtl' || d.dir === 'ltr' ? d.dir : (ar ? 'rtl' : 'ltr');
-    primary.textContent = ar ? BRAND_ARABIC : BRAND_LATIN;
-    second.textContent = ar ? BRAND_LATIN : BRAND_ARABIC;
+    primary.textContent = ar ? brandArabic : brandLatin;
+    second.textContent = ar ? brandLatin : brandArabic;
     second.lang = ar ? 'en' : 'ar';
   }
   setLocale({ locale: 'en' });
 
   // fetch the faces now, while the curtain is down, so its first raise never waits on them
   if (document.fonts && document.fonts.load) {
-    [['1em "RDR Lino"', BRAND_LATIN], ['1em "Hapna Slab"', 'Loading'], ['1em "Lalezar"', BRAND_ARABIC],
+    [['1em "RDR Lino"', brandLatin], ['1em "Hapna Slab"', 'Loading'], ['1em "Lalezar"', brandArabic],
       ['700 1em "Tajawal"', 'جارٍ'], ['1em "Amiri"', 'جارٍ']]
       .forEach(([font, sample]) => document.fonts.load(font, sample).catch(() => null));
   }

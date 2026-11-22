@@ -41,6 +41,8 @@ local function push()
     SendNUIMessage({
         action = 'show',
         serverName = Config.ServerName,
+        brandLatin = Config.BrandLatin,
+        brandArabic = Config.BrandArabic,
         text = curtainText(current.key or 'loading'),
         sub = current.sub and locale(current.sub) or nil,
         locale = key,

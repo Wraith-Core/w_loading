@@ -63,9 +63,11 @@ AddEventHandler('playerConnecting', function(name, _, deferrals)
     local plates = plateIds()
 
     deferrals.handover({
-        wl_name    = name,
-        wl_server  = Config.ServerName,
-        wl_locale  = key,
+        wl_name         = name,
+        wl_server       = Config.ServerName,
+        wl_brand_latin  = Config.BrandLatin,
+        wl_brand_arabic = Config.BrandArabic,
+        wl_locale       = key,
         wl_dir     = key == 'ar' and 'rtl' or 'ltr',
         wl_strings = strings,
         wl_tips    = tips,

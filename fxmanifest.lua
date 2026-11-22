@@ -5,8 +5,8 @@ lua54 'yes'
 
 name 'w_loading'
 author 'Wraith Studio'
-version '2.0.7'
-description 'Red River loading screen ("The Survey Plates"), and the loading curtain drawn between character selection, creation and the spawn'
+version '2.0.8'
+description 'Wraith Core loading screen ("The Survey Plates"), and the loading curtain drawn between character selection, creation and spawn'
 
 -- ════════════════════════════════════════════════════════════════════════════
 -- Two pages, one identity (ink and paper in black and white, RDR typography, one red):

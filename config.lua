@@ -1,8 +1,13 @@
 Config = {}
 
 --- The server's name: the title of the loading screen page and the curtain's label.
---- (The wordmark on both pages is the name itself, WRAITH CORE / ريث كور.)
-Config.ServerName = 'ريد ريفر | Red River'
+--- Override in server.cfg with `setr w_loading:serverName "My Server"`.
+Config.ServerName = GetConvar('w_loading:serverName', 'Wraith Core')
+
+--- The wordmark drawn on both the loading screen and the transition curtain.
+--- Override in server.cfg with `setr w_loading:brandLatin "..."` / `setr w_loading:brandArabic "..."`.
+Config.BrandLatin  = GetConvar('w_loading:brandLatin', 'WRAITH CORE')
+Config.BrandArabic = GetConvar('w_loading:brandArabic', 'ريث كور')
 
 --- A contact address shown in small type at the bottom of the loading screen, next to the
 --- "not approved, sponsored, or endorsed by Rockstar Games" line. Rockstar's licence for
